@@ -30,6 +30,48 @@ android {
         versionName = "$versionMajor.$versionMinor.$versionPatch"
         multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = mapOf("room.schemaLocation" to "$projectDir/schemas")
+            }
+        }
+    }
+    signingConfigs {
+        getByName("debug") {
+            storeFile = rootProject.file("debug.keystore")
+            storePassword = "android"
+            keyAlias = "androiddebugkey"
+            keyPassword = "android"
+        }
+        getByName("release") {
+            storeFile = rootProject.file("release.keystore")
+            storePassword = System.getenv("ANDROID_KEYSTORE_PASSWORD")
+            keyAlias = System.getenv("ANDROID_KEYSTORE_ALIAS")
+            keyPassword = System.getenv("ANDROID_KEYSTORE_PRIVATE_KEY_PASSWORD")
+        }
+    }
+    buildTypes {
+        getByName("debug") {
+            signingConfig = signingConfigs.getByName("debug")
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = "-debug"
+        }
+        getByName("release") {
+            signingConfig = signingConfigs.getByName("release")
+            isDebuggable = false
+            isZipAlignEnabled = true
+            isMinifyEnabled = true
+            proguardFile(getDefaultProguardFile("proguard-android-optimize.txt"))
+            // global proguard settings
+            proguardFile(file("proguard-rules.pro"))
+            // library proguard settings
+            val files = rootProject.file("proguard")
+                    .listFiles()
+                    .filter { it.name.startsWith("proguard") }
+                    .toTypedArray()
+            proguardFiles(*files)
+        }
     }
     testOptions {
         unitTests.isReturnDefaultValues = true
@@ -44,6 +86,7 @@ android {
 
 kapt {
     useBuildCache = true
+    mapDiagnosticLocations = true
 }
 
 dependencies {
