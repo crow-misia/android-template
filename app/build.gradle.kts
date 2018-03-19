@@ -28,6 +28,7 @@ android {
         targetSdkVersion(Versions.targetSdk)
         versionCode = versionMajor * 10000 + versionMinor * 100 + versionPatch
         versionName = "$versionMajor.$versionMinor.$versionPatch"
+        testInstrumentationRunner = "app.test.TestAppRunner"
         multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
 
@@ -37,6 +38,11 @@ android {
             }
         }
     }
+    applicationVariants.all(object : Action<ApplicationVariant> {
+        override fun execute(variant: ApplicationVariant) {
+            variant.resValue("string", "versionInfo", variant.versionName)
+        }
+    })
     signingConfigs {
         getByName("debug") {
             storeFile = rootProject.file("debug.keystore")

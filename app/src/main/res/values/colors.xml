@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <color name="primary">#FBC812</color>
+    <color name="primary_dark">#FEAD22</color>
+    <color name="accent">#F57C00</color>
+
+    <color name="window_background">#f2f2f2</color>
+
+    <color name="app_bar_text_color">#FFF</color>
+
+    <color name="drawer_item_icon_tint">#666666</color>
+    <color name="drawer_item_text_color">#222222</color>
+</resources>
