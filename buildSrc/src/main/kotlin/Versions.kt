@@ -6,6 +6,7 @@ object Versions {
     const val gradleBuildTool = "3.0.1"
     const val kotlin = "1.2.30"
     const val googleServices = "3.2.0"
+    const val detekt = "1.0.0.RC6-4"
     const val ktlint = "0.19.0"
     const val ktlintGradle = "3.1.0"
     const val fabricGradleTool = "1.25.1"

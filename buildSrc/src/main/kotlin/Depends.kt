@@ -1,20 +1,28 @@
 object Depends {
     object Kotlin {
         val stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
+        val reflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}"
     }
 
     object Support {
         val support_v4 = "com.android.support:support-v4:${Versions.supportLibrary}"
         val appcompat_v7 = "com.android.support:appcompat-v7:${Versions.supportLibrary}"
-        val design = "com.android.support:design:${Versions.supportLibrary}"
         val cardview_v7 = "com.android.support:cardview-v7:${Versions.supportLibrary}"
+        val gridlayout_v7 = "com.android.support:gridlayout-v7:${Versions.supportLibrary}"
+        val mediarouter_v7 = "com.android.support:mediarouter-v7:${Versions.supportLibrary}"
+        val palette_v7 = "com.android.support:palette-v7:${Versions.supportLibrary}"
+        val recyclerview_v7 = "com.android.support:recyclerview-v7:${Versions.supportLibrary}"
+        val preference_v7 = "com.android.support:preference-v7:${Versions.supportLibrary}"
+        val preference_v14 = "com.android.support:preference-v14:${Versions.supportLibrary}"
+        val support_vector_drawable = "com.android.support:support-vector-drawable:${Versions.supportLibrary}"
+        val animated_vector_drawable = "com.android.support:animated-vector-drawable:${Versions.supportLibrary}"
+        val design = "com.android.support:design:${Versions.supportLibrary}"
         val customtabs = "com.android.support:customtabs:${Versions.supportLibrary}"
+        val percent = "com.android.support:percent:${Versions.supportLibrary}"
         val constraint = "com.android.support.constraint:constraint-layout:1.1.0-beta5"
         val multidex = "com.android.support:multidex:${Versions.multidex}"
         val multidex_instrumentation = "com.android.support:multidex-instrumentation:${Versions.multidex}"
         val support_emoji = "com.android.support:support-emoji-appcompat:${Versions.supportLibrary}"
-        val preference_v7 = "com.android.support:preference-v7:${Versions.supportLibrary}"
-        val preference_v14 = "com.android.support:preference-v14:${Versions.supportLibrary}"
     }
 
     val ktx = "androidx.core:core-ktx:0.2"

@@ -15,3 +15,17 @@ allprojects {
 task("clean", Delete::class) {
     delete = setOf(rootProject.buildDir)
 }
+
+plugins {
+    id("io.gitlab.arturbosch.detekt") version Versions.detekt
+}
+
+detekt {
+    version = Versions.detekt
+    profile("main", Action {
+        input = "$projectDir/app"
+        output = "$projectDir/app/build/reports/detekt"
+        config = "$projectDir/quality/detekt.yml"
+        filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
+    })
+}

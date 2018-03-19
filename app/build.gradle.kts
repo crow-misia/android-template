@@ -44,7 +44,7 @@ android {
             keyAlias = "androiddebugkey"
             keyPassword = "android"
         }
-        getByName("release") {
+        create("release") {
             storeFile = rootProject.file("release.keystore")
             storePassword = System.getenv("ANDROID_KEYSTORE_PASSWORD")
             keyAlias = System.getenv("ANDROID_KEYSTORE_ALIAS")
@@ -82,6 +82,15 @@ android {
         textReport = true
         textOutput("stdout")
     }
+    // Optimize APK size - remove excess files in the manifest and APK
+    packagingOptions {
+        exclude("**/*.kotlin_module")
+        exclude("**/*.version")
+        exclude("**/kotlin/**")
+        exclude("**/*.txt")
+        exclude("**/*.xml")
+        exclude("**/*.properties")
+    }
 }
 
 kapt {
@@ -116,7 +125,9 @@ dependencies {
     implementation(Depends.Retrofit.adapterRxJava2)
 
 //==================== Structure ====================
-    implementation(Depends.Kotshi.api)
+    implementation(Depends.Kotshi.api) {
+        exclude(group = "org.jetbrains.kotlin", module = "kotlin-stdlib-jre7")
+    }
     kapt(Depends.Kotshi.compiler)
 
     implementation(Depends.LifeCycle.runtime)
@@ -143,6 +154,7 @@ dependencies {
     implementation(Depends.Firebase.messaging)
 
     implementation(Depends.threetenabp)
+    api(Depends.threetenbp + "@no-tzdb")
 
     implementation(Depends.Kotpref.kotpref)
     implementation(Depends.Kotpref.initializer)
@@ -166,11 +178,14 @@ dependencies {
 
     debugImplementation(Depends.leakcanary)
 
-    debugImplementation(Depends.debot)
+    debugImplementation(Depends.debot) {
+        exclude(group = "org.jetbrains.kotlin", module = "kotlin-stdlib-jre7")
+    }
 
 //==================== Test ====================
     testImplementation(Depends.junit)
     testImplementation(Depends.mockitoKotlin)
+    testImplementation(Depends.Kotlin.reflect)
 
     testImplementation(Depends.Robolectric.core)
     testImplementation(Depends.Robolectric.support_v4)

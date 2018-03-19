@@ -35,6 +35,7 @@ captures/
 
 # Keystore files
 *.jks
+release.keystore
 
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
@@ -42,4 +43,9 @@ captures/
 # Google Services (e.g. APIs or Firebase)
 google-services.json
 
-release.keystore
+# macOS
+.DS_Store
+
+# not ignore
+!.idea/codeStyleSettings.xml
+!.idea/findbugs-idea.xml
