@@ -26,11 +26,3 @@ open class App : DaggerApplication() {
                 .build()
     }
 }
-
-class A {
-    companion object {
-        fun main(args: Array<String>) {
-
-        }
-    }
-}
