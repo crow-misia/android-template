@@ -22,10 +22,8 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setSupportActionBar(toolbar)
+        setContentView(R.layout.activity_main)
 
-        if (savedInstanceState == null) {
-            setContentView(R.layout.activity_main)
-        }
         drawerMenu.setup(drawer_layout, drawer, toolbar, true)
     }
 

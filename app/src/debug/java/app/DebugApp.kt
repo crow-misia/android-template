@@ -1,6 +1,7 @@
 package app
 
 import com.facebook.stetho.Stetho
+import com.facebook.stetho.timber.StethoTree
 import com.squareup.leakcanary.LeakCanary
 import com.tomoima.debot.DebotConfigurator
 import timber.log.Timber
@@ -16,6 +17,7 @@ class DebugApp : App() {
 
     private fun setupTimber() {
         Timber.plant(Timber.DebugTree())
+        Timber.plant(StethoTree())
     }
 
     private fun setupLeakCanary() {
