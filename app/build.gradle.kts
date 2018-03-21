@@ -208,6 +208,7 @@ dependencies {
     androidTestImplementation(Depends.SupportTest.contrib)
     androidTestImplementation(Depends.Support.multidex_instrumentation)
     androidTestImplementation(Depends.assertk)
+    androidTestImplementation(Depends.screenshot)
 }
 
 repositories {

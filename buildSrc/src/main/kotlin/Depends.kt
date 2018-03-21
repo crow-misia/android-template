@@ -128,4 +128,6 @@ object Depends {
         val espresso = "com.android.support.test.espresso:espresso-core:3.0.1"
         val contrib = "com.android.support.test.espresso:espresso-contrib:3.0.1"
     }
+
+    val screenshot = "com.facebook.testing.screenshot:core:0.6.0@jar"
 }
