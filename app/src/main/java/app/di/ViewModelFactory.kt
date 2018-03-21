@@ -8,16 +8,16 @@ import javax.inject.Provider
 class ViewModelFactory @Inject constructor(
         private val creators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>
 ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T = try {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        val creator = creators[modelClass]
+                ?: creators.entries.firstOrNull { (key, _) -> modelClass.isAssignableFrom(key) }?.value
+                ?: throw IllegalArgumentException("unknown ViewModel class $modelClass")
+
         @Suppress("UNCHECKED_CAST")
-        creators[modelClass]?.run {
-            creators.entries.firstOrNull { (key, _) -> modelClass.isAssignableFrom(key) }?.value
-        }?.run {
-            get() as T
+        return try {
+            creator.get() as T
+        } catch (e: Exception) {
+            throw RuntimeException(e)
         }
-    } catch (e: Exception) {
-        throw RuntimeException(e)
-    } ?: run {
-        throw IllegalArgumentException("unknown model class $modelClass")
     }
 }
