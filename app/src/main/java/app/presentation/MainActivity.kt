@@ -6,9 +6,7 @@ import app.R
 import app.di.ViewModelFactory
 import app.presentation.common.activity.BaseActivity
 import app.presentation.common.menu.DrawerMenu
-import kotlinx.android.synthetic.main.activity_main.drawer
-import kotlinx.android.synthetic.main.activity_main.drawer_layout
-import kotlinx.android.synthetic.main.activity_main.toolbar
+import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
