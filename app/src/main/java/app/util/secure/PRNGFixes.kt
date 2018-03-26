@@ -77,7 +77,7 @@ object PRNGFixes {
         if (Build.VERSION.SDK_INT in VERSION_CODE_JELLY_BEAN..VERSION_CODE_JELLY_BEAN_MR2) {
             applyOpenSSLFix()
         }
-        if (Build.VERSION.SDK_INT > VERSION_CODE_JELLY_BEAN_MR2) {
+        if (Build.VERSION.SDK_INT <=VERSION_CODE_JELLY_BEAN_MR2) {
             installLinuxPRNGSecureRandom()
         }
     }
