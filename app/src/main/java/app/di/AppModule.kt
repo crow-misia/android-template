@@ -10,7 +10,7 @@ import javax.inject.Singleton
 
 @Module internal class AppModule {
     @Singleton @Provides
-    fun provideContext(application: Application): Context = application
+    fun provideContext(app: Application): Context = app
 
     @Singleton @Provides
     fun provideSchedulerProvider(): SchedulerProvider = AppSchedulerProvider()

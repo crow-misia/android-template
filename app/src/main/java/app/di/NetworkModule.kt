@@ -13,6 +13,10 @@ import javax.inject.Singleton
 
 @Module(includes = [BuildTypeBasedNetworkModule::class])
 open class NetworkModule {
+    companion object {
+        val instance = NetworkModule()
+    }
+
     @Singleton @Provides
     fun provideOkHttpClient(interceptors: Set<@JvmSuppressWildcards Interceptor>): OkHttpClient =
             OkHttpClient.Builder().apply {

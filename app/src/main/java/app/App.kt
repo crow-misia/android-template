@@ -2,6 +2,7 @@ package app
 
 import android.support.v7.app.AppCompatDelegate
 import app.di.DaggerAppComponent
+import app.di.NetworkModule
 import app.util.secure.PRNGFixes
 import com.jakewharton.threetenabp.AndroidThreeTen
 import dagger.android.AndroidInjector
@@ -27,8 +28,9 @@ open class App : DaggerApplication() {
         AndroidThreeTen.init(this)
     }
 
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        return DaggerAppComponent.builder()
-                .build()
-    }
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication> =
+            DaggerAppComponent.builder()
+                    .application(this)
+                    .networkModule(NetworkModule.instance)
+                    .build()
 }
