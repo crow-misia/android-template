@@ -19,7 +19,7 @@ object Depends {
         val design = "com.android.support:design:${Versions.supportLibrary}"
         val customtabs = "com.android.support:customtabs:${Versions.supportLibrary}"
         val percent = "com.android.support:percent:${Versions.supportLibrary}"
-        val constraint = "com.android.support.constraint:constraint-layout:1.1.0-beta5"
+        val constraint = "com.android.support.constraint:constraint-layout:1.1.0-beta6"
         val multidex = "com.android.support:multidex:${Versions.multidex}"
         val multidex_instrumentation = "com.android.support:multidex-instrumentation:${Versions.multidex}"
         val support_emoji = "com.android.support:support-emoji-appcompat:${Versions.supportLibrary}"
@@ -62,7 +62,7 @@ object Depends {
     }
 
     object RxJava2 {
-        val core = "io.reactivex.rxjava2:rxjava:2.1.10"
+        val core = "io.reactivex.rxjava2:rxjava:2.1.12"
         val android = "io.reactivex.rxjava2:rxandroid:2.0.2"
         val kotlin = "io.reactivex.rxjava2:rxkotlin:2.2.0"
     }

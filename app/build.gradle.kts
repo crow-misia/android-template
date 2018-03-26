@@ -223,3 +223,5 @@ ktlint {
     reporters = arrayOf(ReporterType.CHECKSTYLE)
     ignoreFailures = true
 }
+
+// apply(mapOf("plugin" to "com.google.gms.google-services"))
