@@ -10,7 +10,6 @@
         >
         <activity
             android:name=".presentation.MainActivity"
-            android:theme="@style/AppTheme.AppBarOverlay"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
