@@ -2,17 +2,13 @@ package app.util.secure
 
 import android.os.Build
 import android.os.Process
-import android.util.Log
-import timber.log.Timber
+import app.extensions.dataInputStream
+import app.extensions.dataOutputStream
 
 import java.io.ByteArrayOutputStream
 import java.io.DataInputStream
-import java.io.DataOutputStream
 import java.io.File
-import java.io.FileInputStream
-import java.io.FileOutputStream
 import java.io.IOException
-import java.io.OutputStream
 import java.io.UnsupportedEncodingException
 import java.security.NoSuchAlgorithmException
 import java.security.Provider
@@ -38,8 +34,6 @@ object PRNGFixes {
 
     private const val DEV_URANDOM = "/dev/urandom"
 
-    private const val TAG = "PRNGFixes"
-
     /**
      * Gets the hardware serial number of this device.
      *
@@ -57,12 +51,11 @@ object PRNGFixes {
     }
 
     private val buildFingerprintAndDeviceSerial: ByteArray by lazy {
-        val result = StringBuilder()
-        Build.FINGERPRINT?.also { result.append(it) }
-        deviceSerialNumber?.also { result.append(it) }
-
         try {
-            result.toString().toByteArray(Charsets.UTF_8)
+            buildString {
+                append(Build.FINGERPRINT)
+                append(deviceSerialNumber)
+            }.toByteArray(Charsets.UTF_8)
         } catch (e: UnsupportedEncodingException) {
             throw RuntimeException("UTF-8 encoding not supported")
         }
@@ -77,7 +70,7 @@ object PRNGFixes {
         if (Build.VERSION.SDK_INT in VERSION_CODE_JELLY_BEAN..VERSION_CODE_JELLY_BEAN_MR2) {
             applyOpenSSLFix()
         }
-        if (Build.VERSION.SDK_INT <=VERSION_CODE_JELLY_BEAN_MR2) {
+        if (Build.VERSION.SDK_INT <= VERSION_CODE_JELLY_BEAN_MR2) {
             installLinuxPRNGSecureRandom()
         }
     }
@@ -159,7 +152,7 @@ object PRNGFixes {
     private fun generateSeed(): ByteArray {
         try {
             val seedBuffer = ByteArrayOutputStream()
-            DataOutputStream(seedBuffer).use {
+            seedBuffer.dataOutputStream().use {
                 it.writeLong(System.currentTimeMillis())
                 it.writeLong(System.nanoTime())
                 it.writeInt(Process.myPid())
@@ -194,7 +187,7 @@ object PRNGFixes {
      * [SecureRandomSpi] which passes all requests to the Linux PRNG
      * (`/dev/urandom`).
      */
-    sealed class LinuxPRNGSecureRandom : SecureRandomSpi() {
+    class LinuxPRNGSecureRandom : SecureRandomSpi() {
         /*
          * IMPLEMENTATION NOTE: Requests to generate bytes and to mix in a seed
          * are passed through to the Linux PRNG (/dev/urandom). Instances of
@@ -207,32 +200,23 @@ object PRNGFixes {
          * duplicated PRNG output.
          */
 
-        /**
-         * Whether this engine instance has been seeded. This is needed because
-         * each instance needs to seed itself if the client does not explicitly
-         * seed it.
-         */
-        private var seedAttempted: Boolean = false
-
         // NOTE: Consider inserting a BufferedInputStream between
         // DataInputStream and FileInputStream if you need higher
         // PRNG output performance and can live with future PRNG
         // output being pulled into this process prematurely.
         private val urandomIn: DataInputStream by lazy {
+            engineSetSeed(generateSeed())
+
             try {
-                DataInputStream(URANDOM_FILE.inputStream())
+                URANDOM_FILE.inputStream().dataInputStream()
             } catch (e: IOException) {
                 throw SecurityException("Failed to open $URANDOM_FILE for reading", e)
             }
         }
 
-        private val urandomOut: OutputStream by lazy {
-            FileOutputStream(URANDOM_FILE)
-        }
-
         override fun engineSetSeed(bytes: ByteArray) {
             try {
-                urandomOut.also {
+                URANDOM_FILE.outputStream().use {
                     it.write(bytes)
                     it.flush()
                 }
@@ -242,17 +226,10 @@ object PRNGFixes {
                 // discussion here: https://plus.google.com/+AndroidDevelopers/posts/YxWzeNQMJS2
                 // Although it is good practise to seed it with more entropy,
                 // /dev/urandom should already be seeded.
-            } finally {
-                seedAttempted = true
             }
         }
 
         override fun engineNextBytes(bytes: ByteArray) {
-            if (!seedAttempted) {
-                // Mix in the device- and invocation-specific seed.
-                engineSetSeed(generateSeed())
-            }
-
             try {
                 val dis: DataInputStream = urandomIn
                 synchronized(dis) {
