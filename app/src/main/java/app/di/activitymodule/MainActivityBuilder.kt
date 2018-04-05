@@ -1,7 +1,7 @@
 package app.di.activitymodule
 
 import app.di.RecycledViewPoolModule
-import app.presentation.MainActivity
+import app.presentation.main.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

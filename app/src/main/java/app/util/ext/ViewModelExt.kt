@@ -1,4 +1,4 @@
-package app.extensions
+package app.util.ext
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider

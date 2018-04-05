@@ -2,8 +2,8 @@ package app.util.secure
 
 import android.os.Build
 import android.os.Process
-import app.extensions.dataInputStream
-import app.extensions.dataOutputStream
+import app.util.ext.dataInputStream
+import app.util.ext.dataOutputStream
 
 import java.io.ByteArrayOutputStream
 import java.io.DataInputStream

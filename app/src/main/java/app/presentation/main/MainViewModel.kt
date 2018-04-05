@@ -1,4 +1,4 @@
-package app.presentation
+package app.presentation.main
 
 import android.arch.lifecycle.ViewModel
 import android.content.Context

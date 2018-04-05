@@ -1,6 +1,6 @@
 @file:Suppress("NOTHING_TO_INLINE")
 
-package app.extensions
+package app.util.ext
 
 import java.io.DataInputStream
 import java.io.DataOutputStream
