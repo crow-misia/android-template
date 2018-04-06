@@ -20,9 +20,9 @@ class ExampleInstrumentedTest {
         val appContext = InstrumentationRegistry.getTargetContext()
 
         val packageName = if (BuildConfig.DEBUG) {
-            "io.github.crowmisia.template.debug"
+            "io.github.zncnm.android.debug"
         } else {
-            "io.github.crowmisia.template"
+            "io.github.zncnm.android"
         }
         assert(packageName, appContext.packageName)
     }

@@ -23,7 +23,7 @@ android {
     buildToolsVersion(Versions.buildTools)
 
     defaultConfig {
-        applicationId = "io.github.crowmisia.template"
+        applicationId = "io.github.zncmn.android"
         minSdkVersion(Versions.minSdk)
         targetSdkVersion(Versions.targetSdk)
         versionCode = versionMajor * 10000 + versionMinor * 100 + versionPatch
@@ -38,11 +38,9 @@ android {
             }
         }
     }
-    applicationVariants.all(object : Action<ApplicationVariant> {
-        override fun execute(variant: ApplicationVariant) {
-            variant.resValue("string", "versionInfo", variant.versionName)
-        }
-    })
+    applicationVariants.all {
+        resValue("string", "versionInfo", versionName)
+    }
     signingConfigs {
         getByName("debug") {
             storeFile = rootProject.file("debug.keystore")
