@@ -10,6 +10,4 @@ import app.data.db.entity.mapper.Converters
     TodoEntity::class
 ], version = 1)
 @TypeConverters(Converters::class)
-abstract class AppDatabase : RoomDatabase() {
-
-}
+abstract class AppDatabase : RoomDatabase()

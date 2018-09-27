@@ -105,7 +105,6 @@ object PRNGFixes {
         } catch (e: Exception) {
             throw SecurityException("Failed to seed OpenSSL PRNG", e)
         }
-
     }
 
     /**
@@ -120,9 +119,9 @@ object PRNGFixes {
         // Install a Linux PRNG-based SecureRandom implementation as the
         // default, if not yet installed.
         val secureRandomProviders = Security.getProviders("SecureRandom.SHA1PRNG")
-        if (secureRandomProviders == null
-                || secureRandomProviders.isEmpty()
-                || LinuxPRNGSecureRandomProvider::class.java != secureRandomProviders[0].javaClass) {
+        if (secureRandomProviders == null ||
+                secureRandomProviders.isEmpty() ||
+                LinuxPRNGSecureRandomProvider::class.java != secureRandomProviders[0].javaClass) {
             Security.insertProviderAt(LinuxPRNGSecureRandomProvider(), 1)
         }
 
@@ -238,7 +237,6 @@ object PRNGFixes {
             } catch (e: IOException) {
                 throw SecurityException("Failed to read from $URANDOM_FILE", e)
             }
-
         }
 
         override fun engineGenerateSeed(size: Int): ByteArray {

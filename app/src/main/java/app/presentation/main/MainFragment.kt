@@ -10,8 +10,11 @@ import javax.inject.Inject
 
 class MainFragment @Inject constructor() : DaggerFragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_main, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ) = inflater.inflate(R.layout.fragment_main, container, false) as View?
 
     companion object {
         fun newInstance() = MainFragment()

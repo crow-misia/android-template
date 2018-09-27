@@ -1,5 +1,4 @@
 import com.android.build.gradle.api.ApplicationVariant
-import org.jetbrains.kotlin.build.serializeToPlainText
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
 plugins {
@@ -7,10 +6,12 @@ plugins {
     kotlin("android") version Versions.kotlin
     kotlin("android.extensions") version Versions.kotlin
     kotlin("kapt") version Versions.kotlin
-    id("org.jlleitschuh.gradle.ktlint") version Versions.ktlintGradle
 //    id("io.fabric") version Versions.fabricGradleTool
     id("com.github.ben-manes.versions") version Versions.gradleVersions
     id("com.google.gms.google-services") version Versions.googleServices apply false
+
+    id("io.gitlab.arturbosch.detekt") version Versions.detekt
+    id("org.jlleitschuh.gradle.ktlint") version Versions.ktlintGradle
 }
 
 // Manifest version
@@ -31,15 +32,9 @@ android {
         testInstrumentationRunner = "app.test.TestAppRunner"
         multiDexEnabled = true
         vectorDrawables.useSupportLibrary = true
-
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = mapOf("room.schemaLocation" to "$projectDir/schemas")
-            }
-        }
     }
     applicationVariants.all {
-        resValue("string", "versionInfo", versionName)
+        resValue("string", "versionInfo", defaultConfig.versionName)
     }
     signingConfigs {
         getByName("debug") {
@@ -82,7 +77,8 @@ android {
         unitTests.isIncludeAndroidResources = true
     }
     lintOptions {
-        setLintConfig(file("lint.xml"))
+        lintConfig = file("lint.xml")
+        check("Interoperability")
         textReport = true
         textOutput("stdout")
     }
@@ -99,7 +95,25 @@ android {
 
 kapt {
     useBuildCache = true
+    correctErrorTypes = true
     mapDiagnosticLocations = true
+    arguments {
+        arg("room.schemaLocation", "$projectDir/schemas")
+    }
+}
+
+detekt {
+    version = Versions.detekt
+    input = files("$projectDir/app")
+    config = files("$projectDir/quality/detekt.yml")
+    filters = ".*test.*,.*/resources/.*,.*/tmp/.*"
+}
+
+ktlint {
+    version.set(Versions.ktlint)
+    android.set(true)
+    reporters.set(setOf(ReporterType.CHECKSTYLE))
+    ignoreFailures.set(true)
 }
 
 dependencies {
@@ -215,11 +229,4 @@ repositories {
     mavenCentral()
 }
 
-ktlint {
-    version = Versions.ktlint
-    android = true
-    reporters = arrayOf(ReporterType.CHECKSTYLE)
-    ignoreFailures = true
-}
-
-// apply(mapOf("plugin" to "com.google.gms.google-services"))
+// plugins.apply("com.google.gms.google-services")

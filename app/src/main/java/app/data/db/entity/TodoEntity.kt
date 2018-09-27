@@ -7,10 +7,12 @@ import org.threeten.bp.Instant
 
 @Entity(tableName = "todo")
 data class TodoEntity(
-        @PrimaryKey(autoGenerate = true) @ColumnInfo
-        val id: Int,
-        @ColumnInfo
-        val name: String,
-        @ColumnInfo
-        val time: Instant
+    @PrimaryKey(autoGenerate = true) @ColumnInfo
+    val id: Int,
+
+    @ColumnInfo
+    val name: String,
+
+    @ColumnInfo
+    val time: Instant
 )

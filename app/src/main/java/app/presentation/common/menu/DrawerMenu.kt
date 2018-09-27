@@ -8,15 +8,15 @@ import android.support.v7.widget.Toolbar
 import javax.inject.Inject
 
 class DrawerMenu @Inject constructor(
-        private val activity: AppCompatActivity
+    private val activity: AppCompatActivity
 ) {
     private lateinit var drawerLayout: DrawerLayout
 
     fun setup(
-            drawerLayout: DrawerLayout,
-            navigationView: NavigationView,
-            toolbar: Toolbar? = null,
-            actionBarDrawerSync: Boolean = false
+        drawerLayout: DrawerLayout,
+        navigationView: NavigationView,
+        toolbar: Toolbar? = null,
+        actionBarDrawerSync: Boolean = false
     ) {
         this.drawerLayout = drawerLayout
         navigationView.setNavigationItemSelectedListener {

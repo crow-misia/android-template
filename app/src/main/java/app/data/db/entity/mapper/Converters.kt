@@ -4,7 +4,8 @@ import android.arch.persistence.room.TypeConverter
 import org.threeten.bp.Instant
 
 object Converters {
-    @TypeConverter @JvmStatic
+    @TypeConverter
+    @JvmStatic
     fun fromTimestamp(value: Long?): Instant? = value?.let { Instant.ofEpochSecond(it) }
 
     @TypeConverter @JvmStatic

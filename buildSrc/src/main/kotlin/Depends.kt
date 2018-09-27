@@ -19,13 +19,13 @@ object Depends {
         val design = "com.android.support:design:${Versions.supportLibrary}"
         val customtabs = "com.android.support:customtabs:${Versions.supportLibrary}"
         val percent = "com.android.support:percent:${Versions.supportLibrary}"
-        val constraint = "com.android.support.constraint:constraint-layout:1.1.0-beta6"
+        val constraint = "com.android.support.constraint:constraint-layout:1.1.3"
         val multidex = "com.android.support:multidex:${Versions.multidex}"
         val multidex_instrumentation = "com.android.support:multidex-instrumentation:${Versions.multidex}"
         val support_emoji = "com.android.support:support-emoji-appcompat:${Versions.supportLibrary}"
     }
 
-    val ktx = "androidx.core:core-ktx:0.2"
+    val ktx = "androidx.core:core-ktx:0.3"
 
     object OkHttp3 {
         val core = "com.squareup.okhttp3:okhttp:${Versions.okhttp3}"
@@ -62,9 +62,9 @@ object Depends {
     }
 
     object RxJava2 {
-        val core = "io.reactivex.rxjava2:rxjava:2.1.12"
-        val android = "io.reactivex.rxjava2:rxandroid:2.0.2"
-        val kotlin = "io.reactivex.rxjava2:rxkotlin:2.2.0"
+        val core = "io.reactivex.rxjava2:rxjava:${Versions.rxjava}"
+        val android = "io.reactivex.rxjava2:rxandroid:${Versions.rxandroid}"
+        val kotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxkotlin}"
     }
 
     object Dagger {
@@ -91,7 +91,7 @@ object Depends {
         val processor = "com.github.hotchemi:permissionsdispatcher-processor:${Versions.permissionDispatcher}"
     }
 
-    val threetenabp = "com.jakewharton.threetenabp:threetenabp:1.0.5"
+    val threetenabp = "com.jakewharton.threetenabp:threetenabp:1.1.0"
 
     object Kotpref {
         val kotpref = "com.chibatching.kotpref:kotpref:${Versions.kotpref}"
@@ -105,14 +105,14 @@ object Depends {
         val timber = "com.facebook.stetho:stetho-timber:${Versions.stetho}"
     }
 
-    val crashlytics = "com.crashlytics.sdk.android:crashlytics:2.9.1@aar"
-    val timber = "com.jakewharton.timber:timber:4.6.1"
-    val leakcanary = "com.squareup.leakcanary:leakcanary-android:1.5.4"
+    val crashlytics = "com.crashlytics.sdk.android:crashlytics:2.9.5@aar"
+    val timber = "com.jakewharton.timber:timber:4.7.1"
+    val leakcanary = "com.squareup.leakcanary:leakcanary-android:1.6.1"
 
     val debot = "com.tomoima.debot:debot:${Versions.debot}"
 
     val junit = "junit:junit:4.12"
-    val mockitoKotlin = "com.nhaarman:mockito-kotlin:1.5.0"
+    val mockitoKotlin = "com.nhaarman:mockito-kotlin:1.6.0"
 
     object Robolectric {
         val core = "org.robolectric:robolectric:${Versions.robolectric}"
@@ -120,14 +120,14 @@ object Depends {
         val multidex = "org.robolectric:shadows-multidex:${Versions.robolectric}"
     }
 
-    val assertk = "com.willowtreeapps.assertk:assertk:0.9"
-    val threetenbp = "org.threeten:threetenbp:1.3.6"
+    val assertk = "com.willowtreeapps.assertk:assertk:0.10"
+    val threetenbp = "org.threeten:threetenbp:1.3.7"
 
     object SupportTest {
-        val runner = "com.android.support.test:runner:1.0.1"
-        val espresso = "com.android.support.test.espresso:espresso-core:3.0.1"
-        val contrib = "com.android.support.test.espresso:espresso-contrib:3.0.1"
+        val runner = "com.android.support.test:runner:1.0.2"
+        val espresso = "com.android.support.test.espresso:espresso-core:${Versions.espresso}"
+        val contrib = "com.android.support.test.espresso:espresso-contrib:${Versions.espresso}"
     }
 
-    val screenshot = "com.facebook.testing.screenshot:core:0.6.0@jar"
+    val screenshot = "com.facebook.testing.screenshot:core:0.8.0@jar"
 }

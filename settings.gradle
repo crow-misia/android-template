@@ -19,6 +19,9 @@ pluginManagement {
                 case 'com.github.ben-manes.versions':
                     useModule("com.github.ben-manes:gradle-versions-plugin:${requested.version}")
                     break
+                case "io.gitlab.arturbosch.detekt":
+                    useModule("gradle.plugin.io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${requested.version}")
+                    break
                 case "org.jlleitschuh.gradle.ktlint":
                     useModule("gradle.plugin.org.jlleitschuh.gradle:ktlint-gradle:${requested.version}")
                     break

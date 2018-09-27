@@ -7,7 +7,7 @@ import app.R
 import app.presentation.main.MainFragment
 import javax.inject.Inject
 
-class NavigationController @Inject constructor(private val activity: AppCompatActivity) {
+class NavigationController @Inject constructor(activity: AppCompatActivity) {
     private val fragmentManager: FragmentManager = activity.supportFragmentManager
 
     fun navigateToMain() {

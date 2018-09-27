@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="app">
 
+    <uses-sdk android:minSdkVersion="21" />
+
     <application
         android:name=".DebugApp"
         tools:replace="android:name"

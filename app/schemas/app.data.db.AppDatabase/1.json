@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "00f811c42d3de803f4129ad3ef9c2b0b",
+    "identityHash": "d185eb133f929132c40fca97a247c34e",
     "entities": [
       {
         "tableName": "todo",
@@ -39,7 +39,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"00f811c42d3de803f4129ad3ef9c2b0b\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"d185eb133f929132c40fca97a247c34e\")"
     ]
   }
 }
