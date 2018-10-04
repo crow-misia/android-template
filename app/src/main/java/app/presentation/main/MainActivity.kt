@@ -3,10 +3,10 @@ package app.presentation.main
 import android.os.Bundle
 import app.R
 import app.di.ViewModelFactory
-import app.util.ext.viewModelProvider
 import app.presentation.NavigationController
 import app.presentation.common.activity.BaseActivity
 import app.presentation.common.menu.DrawerMenu
+import app.util.ext.viewModelProvider
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 

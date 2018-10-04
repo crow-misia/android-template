@@ -2,7 +2,6 @@ package app.presentation.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import app.R
 import dagger.android.support.DaggerFragment
@@ -14,7 +13,7 @@ class MainFragment @Inject constructor() : DaggerFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) = inflater.inflate(R.layout.fragment_main, container, false) as View?
+    ) = inflater.inflate(R.layout.fragment_main, container, false)
 
     companion object {
         fun newInstance() = MainFragment()

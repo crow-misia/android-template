@@ -1,1 +1,45 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+subprojects {
+    apply from: rootProject.file('gradle/dependencies.gradle')
+
+    buildscript {
+        repositories {
+            maven { url "https://plugins.gradle.org/m2/" }
+            google()
+            jcenter()
+            maven { url 'https://maven.fabric.io/public' }
+            mavenCentral()
+        }
+
+        dependencies {
+            classpath deps.build.gradlePlugins.android
+            classpath deps.build.gradlePlugins.kotlin
+            classpath deps.build.gradlePlugins.googleServices
+            classpath deps.build.gradlePlugins.licenseTools
+            classpath deps.build.gradlePlugins.gradleVersions
+            classpath deps.build.gradlePlugins.jacoco
+            classpath deps.build.gradlePlugins.detekt
+            classpath deps.build.gradlePlugins.ktlint
+            classpath deps.build.gradlePlugins.fabric
+        }
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url 'https://maven.fabric.io/public' }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.10.2'
+    distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
+}
+
+apply from: rootProject.file('gradle/dependencies.gradle')
