@@ -101,9 +101,9 @@ androidExtensions {
 }
 
 kapt {
-    useBuildCache false
+    useBuildCache true
     correctErrorTypes true
-    mapDiagnosticLocations false
+    mapDiagnosticLocations true
     arguments {
         arg("room.schemaLocation", "$projectDir/schemas")
     }
@@ -219,10 +219,11 @@ dependencies {
 
     testImplementation deps.misc.threetenbp
 
-    testImplementation deps.test.androidTesting
+    testImplementation deps.arch.test.androidTesting
     testImplementation deps.arch.room.testing
 
     androidTestImplementation deps.test.androidRunner
+    androidTestImplementation deps.test.androidRules
     androidTestImplementation deps.test.espresso
     androidTestImplementation deps.test.contrib
     androidTestImplementation deps.androidx.multidexInstrumentation
