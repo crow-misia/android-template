@@ -1,13 +1,15 @@
 package app.presentation.main
 
 import android.os.Bundle
+import android.support.design.widget.NavigationView
+import android.support.v4.widget.DrawerLayout
+import android.support.v7.widget.Toolbar
 import app.R
 import app.di.ViewModelFactory
 import app.presentation.NavigationController
 import app.presentation.common.activity.BaseActivity
 import app.presentation.common.menu.DrawerMenu
 import app.util.ext.viewModelProvider
-import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : BaseActivity() {
@@ -20,9 +22,13 @@ class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val toolbar: Toolbar = findViewById(R.id.toolbar)
+        val drawer: NavigationView = findViewById(R.id.drawer)
+        val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         setSupportActionBar(toolbar)
 
-        drawerMenu.setup(drawer_layout, drawer, toolbar, true)
+        drawerMenu.setup(drawerLayout, drawer, toolbar, true)
 
         navigationController.navigateToMain()
     }

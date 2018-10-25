@@ -96,7 +96,8 @@ android {
 }
 
 androidExtensions {
-    experimental false
+    experimental true
+    features = ["parcelize"]
 }
 
 kapt {
